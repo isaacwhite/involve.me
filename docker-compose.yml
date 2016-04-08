@@ -1,0 +1,19 @@
+web:
+  build: .
+  command: python manage.py runserver 0.0.0.0:8000
+  volumes:
+    - .:/code
+  ports:
+    - "8000:8000"
+  hostname: django
+  environment:
+    - DB_HOST=db
+    - DB_NAME=postgres
+    - DB_USER=postgres
+    - DB_PASS=
+    - DB_PORT=5432
+  links:
+    - db
+db:
+  image: postgres
+  hostname: db
