@@ -20,5 +20,15 @@
     "16":"img/icon@16.png",
     "48":"img/icon@48.png",
     "128":"img/icon@128.png"
+  },
+  "permissions": [
+    "identity"
+  ],
+  "oauth2": {
+    "client_id":"93104838348-uqjfjddej2var487lkrbm1ejj54hegiv.apps.googleusercontent.com",
+    "scopes": [
+      "https://www.googleapis.com/auth/plus.login",
+      "https://www.googleapis.com/auth/userinfo.email"
+    ]
   }
 }
