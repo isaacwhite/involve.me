@@ -3,6 +3,9 @@
   "version": "0.0.1",
   "manifest_version": 2,
   "description": "Involve.me is a service that connects compassionate readers with worthy organizations that are fighting for change.",
+  "background": {
+    "scripts": ["core.js"]
+  },
   "content_scripts": [
     {
       "matches": [
@@ -22,12 +25,13 @@
     "128":"img/icon@128.png"
   },
   "permissions": [
-    "identity"
+	"management",
+    "identity",
+    "identity.email"
   ],
   "oauth2": {
-    "client_id":"93104838348-uqjfjddej2var487lkrbm1ejj54hegiv.apps.googleusercontent.com",
+    "client_id":"93104838348-uqjfjddej2var487lkrbm1ejj54hegiv.apps.googleusercontent.com", /* Don't hack us, bro */
     "scopes": [
-      "https://www.googleapis.com/auth/plus.login",
       "https://www.googleapis.com/auth/userinfo.email"
     ]
   }

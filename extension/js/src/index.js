@@ -5,6 +5,7 @@ var $ = require('jquery');
 var orgData = {};
 window.$ = $;
 window.jQuery = $;
+window.emailAddy = { email: "" }
 
 // var stub = require('stub');
 
@@ -48,7 +49,6 @@ var templates = require('templates');
         '\\/.+',
         '\\/.+'
     ].join(''), 'i');
-
 
     if (!window.location.href.match(whitelist)) {
         return console.log('Location does not match. Exiting invole.me early.');
@@ -103,33 +103,36 @@ var templates = require('templates');
             return soFar;
         }, {});
 
-    getMatchData(Object.keys(counts).join(','), function (err, data) {
+    chrome.runtime.sendMessage({},function(response){
+		window.emailAddy = response;	
+		getMatchData(Object.keys(counts).join(','), function (err, data) {
         
-        if (err || !Object.keys(data).length) {
-            return console.log('no info available!');
-        }
+			if (err || !Object.keys(data).length) {
+			    return console.log('no info available!');
+			}
 
-        // account for ampersands
-        var matches = Object.keys(data).map(function (k) {
-            return k.replace(/&(?!:amp;)/i, '&(?:amp;)?');
-        });
+			// account for ampersands
+			var matches = Object.keys(data).map(function (k) {
+			    return k.replace(/&(?!:amp;)/i, '&(?:amp;)?');
+			});
 
-        var replacement = wordBoundaryMatch(matches);
+			var replacement = wordBoundaryMatch(matches);
 
-        // replace the matches with our tags
-        $tags.each(function () {
-            var $el = $(this);
-            var wrapped = $el.html().replace(replacement, '<span class="involve-me-highlight">$1</span>');
+			// replace the matches with our tags
+			$tags.each(function () {
+				var $el = $(this);
+				var wrapped = $el.html().replace(replacement, '<span class="involve-me-highlight">$1</span>');
 
-            if (wrapped !== $el.html()) {
-                console.log(wrapped);
-            }
+				if (wrapped !== $el.html()) {
+					console.log(wrapped);
+				}
 
-            $el.html(wrapped);
-        });
+				 $el.html(wrapped);
+			});
 
-        setupListeners();
-    });
+			setupListeners();
+		})
+	});
 }());
 
 function getMatchData(matches, cb) {
@@ -138,7 +141,8 @@ function getMatchData(matches, cb) {
         url: 'https://3c5b4fa9.ngrok.io/api/v1/matchquery/',
         data: {
             matches: matches,
-            url: window.location.href
+            url: window.location.href,
+			email: window.emailAddy
         },
         success: function (data) {
             var parsed = parseData(data);
