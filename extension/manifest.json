@@ -11,5 +11,8 @@
       "css": ["css/style.css"],
       "js": ["js/main.js"]
     }
+  ],
+  "web_accessible_resources": [
+    "fonts/*"
   ]
 }

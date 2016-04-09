@@ -1,0 +1,27 @@
+<h4 class="name">{{ name }}</h4>
+{{#if location }}
+<h5 class="location">{{ location }}</h5>
+{{/if}}
+{{#if rating }}
+<span class="rating {{rating.description}}">
+    {{#each rating.dots }}
+    <i class="status-{{ state }}"></i>
+    {{/each}}
+    {{ rating.description }}
+</span>
+{{/if}}
+<p class="description">{{ description }}</p>
+<a href="#" class="show-more">More info</a>
+{{#if full }}
+<div class="get-involved">
+    <div class="donate">
+        <form>
+            <input type="text"></input>
+            <button type="submit">Donate</button>
+        </form>
+    </div>
+    <div class="volunteer">
+        <a href="#">Get involved</a>
+    </div>
+</div>
+{{/if}}

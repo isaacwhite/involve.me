@@ -1,8 +1,60 @@
+@import "fonts";
+@import "vars";
+@import "mixins";
+
+@import "vendor/opentip";
+
 .modal-test {
     display: block;
 }
 
 .involve-me-highlight {
-    background-color: red;
-    color: white;
+    background-color: $involve-primary;
+    padding: 3px;
+    border-radius: 2px;
+    display: inline-block;
+}
+
+.style-involve-me-tooltip {
+
+    .name {
+        @include font($graphik, $medium, 16px, 24px);
+    }
+
+    .rating {
+        @include font($graphik, $medium, 12px, 12px);
+        color: $involve-warning;
+        text-transform: uppercase;
+
+        &.trustworthy {
+            color: $involve-primary;
+        }
+        
+        i {
+            width: 8px;
+            height: 8px;
+            border-radius: 4px;
+            display: inline-block;
+            margin-right: 3px;
+
+            &.status-on {
+                background-color: $involve-primary;
+            }
+
+            &.status-off {
+                background-color: $gray-secondary;
+            }
+
+        }
+
+    }
+
+    .description {
+        @include font($graphik, $book, 16px, 24px);
+    }
+
+}
+
+.style-involve-me-tooltip {
+    background-color: #52ef96;
 }

@@ -32,7 +32,7 @@ module.exports = function (grunt) {
             },
             handlebars: {
                 files: [
-                    'src/{,**/}*.hbs'
+                    'hbs/{,**/}*.hbs'
                 ],
                 tasks: ['handlebars:compile']
             }
@@ -89,8 +89,12 @@ module.exports = function (grunt) {
                 entry: 'index.js',
                 resolve: {
                     root: [
-                        __dirname + '/js/src'
-                    ]
+                        __dirname + '/js/src',
+                        __dirname + '/js/vendor'
+                    ],
+                    alias: {
+                        handlebars: __dirname + '/js/vendor/handlebars.runtime.min.js'  
+                    }
                 },
                 output: {
                     filename: 'js/main.js'
