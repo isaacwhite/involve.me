@@ -3,6 +3,7 @@ from __future__ import unicode_literals
 from datetime import datetime
 from django.db import models
 from django.contrib.postgres.fields import JSONField
+from django.contrib.auth.models import User
 
 class Organization(models.Model):
     org_id = models.AutoField(primary_key=True)
@@ -41,3 +42,9 @@ class MatchRel(models.Model):
     
     def __str_(self):
     	return self.action.organization.name + self.match.match
+
+class UserHistory(models.Model):
+	matches = models.ManyToManyField(MatchRel)
+	url = models.URLField(max_length=1000)
+	datetime = models.DateTimeField(auto_now_add=True)
+	user = models.ForeignKey(User)

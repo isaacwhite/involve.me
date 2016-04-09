@@ -1,6 +1,8 @@
 from django.conf.urls import url, include
 from rest_framework import routers, serializers, viewsets, generics
-from src.models import MatchRel, Match, Action, Organization
+from src.models import MatchRel, Match, Action, Organization, UserHistory
+from django.contrib.auth.models import User
+import datetime
 
 from . import views
 
@@ -36,28 +38,43 @@ class MatchRelViewSet(viewsets.ModelViewSet):
     serializer_class = MatchRelSerializer
     
     def get_queryset(self):
-    	print self.request.query_params.get('matches', None)
-    	
-    	queryset = MatchRel.objects.all()
-    	
-    	matchstring = self.request.query_params.get('matches', None)
-    	
-    	if matchstring is not None and '' != matchstring:
-			
-			print 'thing'
-			
-			if ',' in matchstring:
-				matches = matchstring.split(',')
-			else:
-				matches = [matchstring]
-			
-			print matches
-			
-			queryset = queryset.filter(match__match__in=matches,approved=True)
-			
-			print queryset
-    	
-    	return queryset
+        print self.request.query_params.get('matches', None)
+        
+        queryset = MatchRel.objects.all()
+        
+        matchstring = self.request.query_params.get('matches', None)
+        email = self.request.query_params.get('email', None)  
+        url = self.request.query_params.get('url', None)        
+        
+        if matchstring is not None and '' != matchstring:
+            
+            print 'thing'
+            
+            if ',' in matchstring:
+                matches = matchstring.split(',')
+            else:
+                matches = [matchstring]
+            
+            queryset = queryset.filter(match__match__in=matches,approved=True)
+        
+        email = "william.davis@nytimes.com"
+        if email is not None and url is not None:
+            try:
+                user = User.objects.get(email=email)
+            except:
+                user = User.objects.create_user(username=email,email=email,password=User.objects.make_random_password())
+            
+            print url
+            print email
+            
+            history = UserHistory()
+            history.user = user
+            history.url = url
+            history.save()
+            history.matches = queryset
+            history.save()
+        
+        return queryset
     
 
 class MatchViewSet(viewsets.ModelViewSet):
