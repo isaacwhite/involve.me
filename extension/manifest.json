@@ -1,8 +1,8 @@
 {
-  "name": "My extension",
+  "name": "involve.me",
   "version": "0.0.1",
   "manifest_version": 2,
-  "description": "A chrome extension that runs and injects charity context script into page",
+  "description": "Involve.me is a service that connects compassionate readers with worthy organizations that are fighting for change.",
   "content_scripts": [
     {
       "matches": [
@@ -15,5 +15,10 @@
   "web_accessible_resources": [
     "fonts/*",
     "img/*"
-  ]
+  ],
+  "icons": {
+    "16":"img/icon@16.png",
+    "48":"img/icon@48.png",
+    "128":"img/icon@128.png"
+  }
 }
