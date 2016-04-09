@@ -4,7 +4,7 @@ web:
   volumes:
     - .:/code
   ports:
-    - "8000:8000"
+    - "80:8000"
   hostname: django
   environment:
     - DB_HOST=db
