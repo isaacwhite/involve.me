@@ -1,6 +1,6 @@
 {
   "name": "involve.me",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "manifest_version": 2,
   "description": "Involve.me is a service that connects compassionate readers with worthy organizations that are fighting for change.",
   "background": {
@@ -30,7 +30,7 @@
     "identity.email"
   ],
   "oauth2": {
-    "client_id":"93104838348-uqjfjddej2var487lkrbm1ejj54hegiv.apps.googleusercontent.com", /* Don't hack us, bro */
+    "client_id":"93104838348-uqjfjddej2var487lkrbm1ejj54hegiv.apps.googleusercontent.com",
     "scopes": [
       "https://www.googleapis.com/auth/userinfo.email"
     ]
