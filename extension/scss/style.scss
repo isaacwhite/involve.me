@@ -8,27 +8,61 @@
     display: block;
 }
 
+.opentip-container {
+    max-width: 400px;
+}
+
 .involve-me-highlight {
-    background-color: $involve-primary;
+    background: linear-gradient(to right, rgba(82,239,150,0.4) 0%, rgba(138,237,248,0.4) 100%);
     padding: 3px;
     border-radius: 2px;
     display: inline-block;
 }
 
 .style-involve-me-tooltip {
+    max-width: 400px;
+
+    * {
+        box-sizing: border-box;
+    }
+
+    a,
+    a:visited,
+    a:hover,
+    a:link {
+        color: $black;
+    }
+
+    .ot-content {
+        padding: 20px 15px;
+    }
+
+    .icon-external {
+        width: 20px;
+        height: 13px;
+        display: inline-block;
+        margin-left: 5px;
+        background-image: url('chrome-extension://nbnflpbniahefgfiggjebijfcfffhndj/img/arrow.png');
+        background-size: 20px 13px;
+    }
+
+    .inform-header {
+        padding-bottom: 7px;
+        margin-bottom: 15px;
+        border-bottom: 1px solid $involve-primary;
+    }
 
     .name {
         @include font($graphik, $medium, 16px, 24px);
+        display: inline;
     }
 
     .rating {
         @include font($graphik, $medium, 12px, 12px);
         color: $involve-warning;
         text-transform: uppercase;
-
-        &.trustworthy {
-            color: $involve-primary;
-        }
+        margin-bottom: 10px;
+        display: block;
         
         i {
             width: 8px;
@@ -37,24 +71,92 @@
             display: inline-block;
             margin-right: 3px;
 
-            &.status-on {
-                background-color: $involve-primary;
-            }
-
             &.status-off {
                 background-color: $gray-secondary;
             }
 
+            &.status-on {
+                background-color: $involve-warning;
+            }
+
         }
+
+        &.trustworthy {
+            color: $involve-primary;
+
+            i {
+                
+                &.status-on {
+                    background-color: $involve-primary;
+                }
+
+            }
+
+        }
+
+        .dots {
+            margin-right: 10px;
+        }
+
+    }
+
+    .location {
+        @include font($graphik, $book, 14px, 22px);
+        color: $gray-primary;
 
     }
 
     .description {
         @include font($graphik, $book, 16px, 24px);
+        display: inline;
+    }
+
+    .show-more {
+        @include font($graphik, $book, 16px, 24px);
+        color: $gray-primary;
+    }
+
+    .volunteer-link {
+        @include font($graphik, $medium, 16px, 24px);
+        width: 100%;
+        color: $white;
+        height: 50px;
+        display: inline-block;
+        background: linear-gradient(to right, rgba(82,239,150,1) 0%, rgba(138,237,248,1) 100%);
+        text-align: center;
+        padding: 15px;
+
+        &:hover {
+            text-decoration: none;
+        }
+
+    }
+
+    .donate-form {
+        display: flex;
+        margin: 20px 0;
+
+        input, button {
+            @include font($graphik, $medium, 16px, 24px);
+            height: 40px;
+            1px solid $involve-primary;
+        }
+
+        input {
+            flex: 1 50%;
+            box-shadow: none;
+            border: 1px solid $involve-primary;
+            border-right: none;
+            border-radius: 6px 0 0 6px;
+        }
+
+        button {
+            flex: 80px 0;
+            border-radius: 0 6px 6px 0;
+        }
+
     }
 
 }
 
-.style-involve-me-tooltip {
-    background-color: #52ef96;
-}
+

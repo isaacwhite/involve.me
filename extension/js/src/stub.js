@@ -14,8 +14,9 @@ module.exports = [
                 "name": "Bill & Melinda Gates Foundation",
                 "url": "http://www.gatesfoundation.org/",
                 "location": "Global",
+                "rating": 4,
                 "text": "We seek to unlock the possibility inside every individual.\r\n\r\nWe see equal value in all lives. And so we are dedicated to improving the quality of life for individuals around the world. From the education of students in Chicago, to the health of a young mother in Nigeria, we are catalysts of human promise everywhere."
-            }
+            },
         }
     },
     {
@@ -33,6 +34,7 @@ module.exports = [
                 "name": "Bill & Melinda Gates Foundation",
                 "url": "http://www.gatesfoundation.org/",
                 "location": "Global",
+                "rating": 3,
                 "text": "We seek to unlock the possibility inside every individual.\r\n\r\nWe see equal value in all lives. And so we are dedicated to improving the quality of life for individuals around the world. From the education of students in Chicago, to the health of a young mother in Nigeria, we are catalysts of human promise everywhere."
             }
         }
@@ -52,6 +54,7 @@ module.exports = [
                 "name": "Bill & Melinda Gates Foundation",
                 "url": "http://www.gatesfoundation.org/",
                 "location": "Global",
+                "rating": 2,
                 "text": "We seek to unlock the possibility inside every individual.\r\n\r\nWe see equal value in all lives. And so we are dedicated to improving the quality of life for individuals around the world. From the education of students in Chicago, to the health of a young mother in Nigeria, we are catalysts of human promise everywhere."
             }
         }

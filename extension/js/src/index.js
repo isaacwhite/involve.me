@@ -6,7 +6,7 @@ var orgData = {};
 window.$ = $;
 window.jQuery = $;
 
-var stub = require('stub');
+// var stub = require('stub');
 
 var tooltip = require('opentip-jquery');
 tooltip.styles.involveMe = {
@@ -129,10 +129,10 @@ function getMatchData(matches, cb) {
         type: 'GET',
         url: 'https://3c5b4fa9.ngrok.io/api/v1/matchquery/',
         data: {
-            matches: matches
+            matches: matches,
+            url: window.location.href
         },
         success: function (data) {
-            data = stub;
             var parsed = parseData(data);
             cb(null, parsed);
         },
@@ -157,15 +157,16 @@ function parseData(data) {
             return console.log('no organization available');
         }
 
+        var isTrustworthy = org.rating > 3;
         var rating = {
-            description: org.rating > 3 ? 'trustworthy' : 'questionable',
+            description: isTrustworthy ? 'trustworthy' : 'questionable',
             value: org.rating,
             dots: []
         };
 
-        for (var i = 0; i < org.rating; i++) {
-            rating.push({
-                state: i > org.rating ? 'off' : 'on'
+        for (var i = 0; i < 5; i++) {
+            rating.dots.push({
+                state: i > org.rating - 1 ? 'off' : 'on'
             });
         }
 
@@ -177,7 +178,8 @@ function parseData(data) {
             showMore: data.learn_more,
             donate: data.donate_url,
             volunteer: data.volunteer_url,
-            rating: rating
+            rating: rating,
+            full: isTrustworthy
         };
     });
 
