@@ -139,7 +139,7 @@
         input, button {
             @include font($graphik, $medium, 16px, 24px);
             height: 40px;
-            1px solid $involve-primary;
+            border: 1px solid $involve-primary;
         }
 
         input {
