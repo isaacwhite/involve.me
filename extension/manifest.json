@@ -1,0 +1,15 @@
+{
+  "name": "My extension",
+  "version": "0.0.1",
+  "manifest_version": 2,
+  "description": "A chrome extension that runs and injects charity context script into page",
+  "content_scripts": [
+    {
+      "matches": [
+        "*://*/*"
+      ],
+      "css": ["css/style.css"],
+      "js": ["js/main.js"]
+    }
+  ]
+}
