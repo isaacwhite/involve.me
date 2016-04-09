@@ -26,15 +26,19 @@
         box-sizing: border-box;
     }
 
-    a,
-    a:visited,
-    a:hover,
-    a:link {
+    .link {
         color: $black;
+        text-decoration: none;
     }
 
     .ot-content {
         padding: 20px 15px;
+
+        .show-more-link {
+            @include font($graphik, $book, 16px, 24px);
+            color: $gray-primary;
+        }
+
     }
 
     .icon-external {
@@ -47,7 +51,7 @@
     }
 
     .inform-header {
-        padding-bottom: 7px;
+        padding-bottom: 10px;
         margin-bottom: 15px;
         border-bottom: 1px solid $involve-primary;
     }
@@ -111,23 +115,23 @@
         display: inline;
     }
 
-    .show-more {
-        @include font($graphik, $book, 16px, 24px);
-        color: $gray-primary;
-    }
+    .get-involved {
 
-    .volunteer-link {
-        @include font($graphik, $medium, 16px, 24px);
-        width: 100%;
-        color: $white;
-        height: 50px;
-        display: inline-block;
-        background: linear-gradient(to right, rgba(82,239,150,1) 0%, rgba(138,237,248,1) 100%);
-        text-align: center;
-        padding: 15px;
+        .volunteer-link {
+            @include font($graphik, $medium, 16px, 24px);
+            width: 100%;
+            color: $white;
+            height: 48px;
+            display: inline-block;
+            background: linear-gradient(to right, rgba(82,239,150,1) 0%, rgba(138,237,248,1) 100%);
+            text-align: center;
+            padding: 15px;
+            border-radius: 6px;
 
-        &:hover {
-            text-decoration: none;
+            &:hover {
+                text-decoration: none;
+            }
+
         }
 
     }
@@ -135,15 +139,36 @@
     .donate-form {
         display: flex;
         margin: 20px 0;
+        position: relative;
+
+        &:before,
+        &:after {
+            top: 12px;
+            position: absolute;
+            @include font($graphik, $book, 16px, 24px);
+            z-index: 9999;
+        }
+
+        &:before {
+            content: '$';
+            left: 10px;
+        }
+
+        &:after {
+            content: 'USD';
+            color: $gray-primary;
+            right: 90px;
+        }
 
         input, button {
             @include font($graphik, $medium, 16px, 24px);
-            height: 40px;
+            height: 48px;
             border: 1px solid $involve-primary;
         }
 
         input {
             flex: 1 50%;
+            padding: 0 50px 0 25px;
             box-shadow: none;
             border: 1px solid $involve-primary;
             border-right: none;
@@ -153,6 +178,8 @@
         button {
             flex: 80px 0;
             border-radius: 0 6px 6px 0;
+            background-color: $involve-primary-10;
+            color: $involve-primary;
         }
 
     }

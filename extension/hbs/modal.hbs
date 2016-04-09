@@ -1,5 +1,5 @@
 <div class="inform-header">
-    <a class="link" href="{{{ orgUrl }}}">
+    <a class="link" target="_blank" href="{{{ orgUrl }}}">
         <h4 class="name">{{ name }}</h4><i class="icon-external"></i>
     </a>
     {{#if location }}
@@ -17,13 +17,13 @@
 </span>
 {{/if}}
 <p class="description">{{ description }}</p>
-<a href="{{{ showMore }}}" class="show-more link">More info</a><i class="icon-external"></i>
+<a target="_blank" href="{{{ showMore }}}" class="show-more-link link">More info</a><i class="icon-external"></i>
 {{#if full }}
 <div class="get-involved">
     <form class="donate-form">
         <input type="text"></input>
         <button type="submit">Donate</button>
     </form>
-    <a class="volunteer-link link" href="{{{ volunteer }}}">Get involved</a>
+    <a target="_blank" class="volunteer-link link" href="{{{ volunteer }}}">Get Involved</a>
 </div>
 {{/if}}

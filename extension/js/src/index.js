@@ -17,7 +17,13 @@ tooltip.styles.involveMe = {
     background: '#ffffff',
     borderColor: 'rgba(82, 239, 150, .4)',
     shadowColor: 'rgba(82, 239, 150, .5)',
-    shadowBlur: 8
+    shadowBlur: 8,
+    tipJoint: 'bottom middle',
+    targetJoint: 'top middle',
+    offset: [0, -15],
+    stemLength: 15,
+    stemBase: 20,
+    shadowOffset: [0, 0]
 };
 
 var templates = require('templates');
@@ -63,6 +69,8 @@ var templates = require('templates');
     // set up a match expression
     var orgs = wordBoundaryMatch([
             // list would go here
+            'clean water',
+            'zika virus',
             'salvation army',
             'the red cross',
             'doctors without borders',
@@ -81,8 +89,8 @@ var templates = require('templates');
     }
 
     // find all matches, uniquely
-    var counts = segments.join(' ')
-        .match(orgs)
+    var counts = (segments.join(' ')
+        .match(orgs) || [])
         .reduce(function (soFar, match) {
             console.log(match);
             var lower = match.toLowerCase();
@@ -201,7 +209,7 @@ function setupListeners() {
         
         // make sure to start over if necessary
         if (active) {
-            active.hide();
+            active.modal.hide();
         }
 
         if (queuedRemove) {
@@ -214,9 +222,12 @@ function setupListeners() {
         }
 
         var html = templates.modal(data);
-        active = $el.opentip(html, { 
-            style: 'involveMe'
-        });
+        active ={
+            modal: $el.opentip(html, { 
+                    style: 'involveMe'
+                }),
+            data: data
+        };
 
     }).on('mouseleave', '.involve-me-highlight', function (e) {
         console.log('left target!');
@@ -229,6 +240,11 @@ function setupListeners() {
         console.log('left tooltip!');
         hovered = false;
         tryDelayedRemoval();
+    }).on('click', '.style-involve-me-tooltip button', function (e) {
+        console.log('opening: ' + active.data.donate);
+        window.open(active.data.donate,'_blank');
+        // stop propogation and intercept
+        return false;
     });
 
     function tryDelayedRemoval() {
@@ -236,7 +252,6 @@ function setupListeners() {
             clearTimeout(queuedRemove);
         }
 
-        return;
         // wait half a second before trying to hide the modal
         queuedRemove = setTimeout(function () {
             queuedRemove = null;
@@ -245,7 +260,7 @@ function setupListeners() {
                 return;
             }
 
-            active.hide();
+            active.modal.hide();
             active = null;
         }, 1000); // wait a second before hiding
     }

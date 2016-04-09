@@ -27,13 +27,13 @@ this["JST"]["modal"] = Handlebars.template({"1":function(depth0,helpers,partials
 },"6":function(depth0,helpers,partials,data) {
     var stack1, helper;
 
-  return "<div class=\"get-involved\">\n    <form class=\"donate-form\">\n        <input type=\"text\"></input>\n        <button type=\"submit\">Donate</button>\n    </form>\n    <a class=\"volunteer-link link\" href=\""
+  return "<div class=\"get-involved\">\n    <form class=\"donate-form\">\n        <input type=\"text\"></input>\n        <button type=\"submit\">Donate</button>\n    </form>\n    <a target=\"_blank\" class=\"volunteer-link link\" href=\""
     + ((stack1 = ((helper = (helper = helpers.volunteer || (depth0 != null ? depth0.volunteer : depth0)) != null ? helper : helpers.helperMissing),(typeof helper === "function" ? helper.call(depth0,{"name":"volunteer","hash":{},"data":data}) : helper))) != null ? stack1 : "")
-    + "\">Get involved</a>\n</div>\n";
+    + "\">Get Involved</a>\n</div>\n";
 },"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
     var stack1, helper, alias1=helpers.helperMissing, alias2="function", alias3=this.escapeExpression;
 
-  return "<div class=\"inform-header\">\n    <a class=\"link\" href=\""
+  return "<div class=\"inform-header\">\n    <a class=\"link\" target=\"_blank\" href=\""
     + ((stack1 = ((helper = (helper = helpers.orgUrl || (depth0 != null ? depth0.orgUrl : depth0)) != null ? helper : alias1),(typeof helper === alias2 ? helper.call(depth0,{"name":"orgUrl","hash":{},"data":data}) : helper))) != null ? stack1 : "")
     + "\">\n        <h4 class=\"name\">"
     + alias3(((helper = (helper = helpers.name || (depth0 != null ? depth0.name : depth0)) != null ? helper : alias1),(typeof helper === alias2 ? helper.call(depth0,{"name":"name","hash":{},"data":data}) : helper)))
@@ -43,9 +43,9 @@ this["JST"]["modal"] = Handlebars.template({"1":function(depth0,helpers,partials
     + ((stack1 = helpers['if'].call(depth0,(depth0 != null ? depth0.rating : depth0),{"name":"if","hash":{},"fn":this.program(3, data, 0),"inverse":this.noop,"data":data})) != null ? stack1 : "")
     + "<p class=\"description\">"
     + alias3(((helper = (helper = helpers.description || (depth0 != null ? depth0.description : depth0)) != null ? helper : alias1),(typeof helper === alias2 ? helper.call(depth0,{"name":"description","hash":{},"data":data}) : helper)))
-    + "</p>\n<a href=\""
+    + "</p>\n<a target=\"_blank\" href=\""
     + ((stack1 = ((helper = (helper = helpers.showMore || (depth0 != null ? depth0.showMore : depth0)) != null ? helper : alias1),(typeof helper === alias2 ? helper.call(depth0,{"name":"showMore","hash":{},"data":data}) : helper))) != null ? stack1 : "")
-    + "\" class=\"show-more link\">More info</a><i class=\"icon-external\"></i>\n"
+    + "\" class=\"show-more-link link\">More info</a><i class=\"icon-external\"></i>\n"
     + ((stack1 = helpers['if'].call(depth0,(depth0 != null ? depth0.full : depth0),{"name":"if","hash":{},"fn":this.program(6, data, 0),"inverse":this.noop,"data":data})) != null ? stack1 : "");
 },"useData":true});
 
