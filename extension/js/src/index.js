@@ -5,7 +5,7 @@ var $ = require('jquery');
 var orgData = {};
 window.$ = $;
 window.jQuery = $;
-window.emailAddy = { email: "" }
+var clientEmail = '';
 
 // var stub = require('stub');
 
@@ -65,6 +65,11 @@ var templates = require('templates');
     });
 
 
+    // make a request for the email address
+    window.chrome.runtime.sendMessage({}, function (response) {
+        clientEmail = response;   
+    }); 
+
     // we're going to have some kind of list here which is populated already
     // set up a match expression
     var orgs = wordBoundaryMatch([
@@ -103,36 +108,34 @@ var templates = require('templates');
             return soFar;
         }, {});
 
-    chrome.runtime.sendMessage({},function(response){
-		window.emailAddy = response;	
-		getMatchData(Object.keys(counts).join(','), function (err, data) {
-        
-			if (err || !Object.keys(data).length) {
-			    return console.log('no info available!');
-			}
+    
+    getMatchData(Object.keys(counts).join(','), function (err, data) {
+    
+        if (err || !Object.keys(data).length) {
+            return console.log('no info available!');
+        }
 
-			// account for ampersands
-			var matches = Object.keys(data).map(function (k) {
-			    return k.replace(/&(?!:amp;)/i, '&(?:amp;)?');
-			});
+        // account for ampersands
+        var matches = Object.keys(data).map(function (k) {
+            return k.replace(/&(?!:amp;)/i, '&(?:amp;)?');
+        });
 
-			var replacement = wordBoundaryMatch(matches);
+        var replacement = wordBoundaryMatch(matches);
 
-			// replace the matches with our tags
-			$tags.each(function () {
-				var $el = $(this);
-				var wrapped = $el.html().replace(replacement, '<span class="involve-me-highlight">$1</span>');
+        // replace the matches with our tags
+        $tags.each(function () {
+            var $el = $(this);
+            var wrapped = $el.html().replace(replacement, '<span class="involve-me-highlight">$1</span>');
 
-				if (wrapped !== $el.html()) {
-					console.log(wrapped);
-				}
+            if (wrapped !== $el.html()) {
+                console.log(wrapped);
+            }
 
-				 $el.html(wrapped);
-			});
+             $el.html(wrapped);
+        });
 
-			setupListeners();
-		})
-	});
+        setupListeners();
+    });
 }());
 
 function getMatchData(matches, cb) {
@@ -142,7 +145,7 @@ function getMatchData(matches, cb) {
         data: {
             matches: matches,
             url: window.location.href,
-			email: window.emailAddy
+            email: clientEmail
         },
         success: function (data) {
             var parsed = parseData(data);
