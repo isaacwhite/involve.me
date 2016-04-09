@@ -30,7 +30,7 @@
     "identity.email"
   ],
   "oauth2": {
-    "client_id":"93104838348-uqjfjddej2var487lkrbm1ejj54hegiv.apps.googleusercontent.com", /* Don't hack us, bro */
+    "client_id":"93104838348-uqjfjddej2var487lkrbm1ejj54hegiv.apps.googleusercontent.com",
     "scopes": [
       "https://www.googleapis.com/auth/userinfo.email"
     ]
